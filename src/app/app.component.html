@@ -2,10 +2,18 @@
   <div class="nav-wrapper teal lighten-2">
     <a href="#" class="brand-logo">BookTrader</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li routerLinkActive="active"><a routerLink="register">Register</a></li>
-      <li routerLinkActive="active"><a routerLink="login">Login</a></li>
-      <li routerLinkActive="active"><a routerLink="profile">Profile</a></li>
-      <li routerLinkActive="active"><a routerLink="logout">Logout</a></li>
+      <li routerLinkActive="active" *ngIf="!isUserAuthenticated$">
+        <a routerLink="register">Register</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="!isUserAuthenticated$">
+        <a routerLink="login">Login</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="isUserAuthenticated$">
+        <a routerLink="profile">Profile</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="isUserAuthenticated$">
+        <a routerLink="logout">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
