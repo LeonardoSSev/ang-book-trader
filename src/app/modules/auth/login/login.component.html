@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="row">
+  <form class="col s12 offset-s3" id="form" [formGroup]="loginForm">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="text" required autofocus formControlName="email">
+        <label for="email" id="labelEmail">E-mail</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required formControlName="password">
+        <label for="password" id="labelPassword">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button class="btn waves-effect waves-light" (click)="doLogin()" name="doLogin" id="loginButton">Login</button>
+      </div>
+    </div>
+  </form>
+</div>
