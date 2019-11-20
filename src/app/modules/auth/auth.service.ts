@@ -1,17 +1,18 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userAuthenticatedEmitter: EventEmitter<boolean>;
+  userAuthenticatedEmitter = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   isUserAuthenticated() : boolean {
-    const user = localStorage.getItem('user')
+    const user = JSON.parse(localStorage.getItem('user'));
 
     if (user) {
       return true;
@@ -23,7 +24,10 @@ export class AuthService {
   doLogin(user: User) {
     if (user.email !== '' && user.password !== '') {
       localStorage.setItem('user', JSON.stringify(user));
+
       this.userAuthenticatedEmitter.emit(true);
+
+      this.router.navigate(['profile']);
 
       return;
     }
