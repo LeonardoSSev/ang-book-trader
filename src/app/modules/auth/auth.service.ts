@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { User } from 'src/app/models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  userAuthenticatedEmitter: EventEmitter<boolean>;
 
   constructor() { }
 
@@ -15,5 +18,16 @@ export class AuthService {
     }
 
     return false;
+  }
+
+  doLogin(user: User) {
+    if (user.email !== '' && user.password !== '') {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.userAuthenticatedEmitter.emit(true);
+
+      return;
+    }
+
+    this.userAuthenticatedEmitter.emit(false);
   }
 }
