@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  verifyIfFormIsValid() {
+    return !this.loginForm.valid
+  }
+
   doLogin() {
     // TODO
   }
