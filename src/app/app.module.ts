@@ -8,6 +8,7 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { ProfileComponent } from './modules/user/profile/profile.component';
 import { AuthService } from './modules/auth/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { AuthService } from './modules/auth/auth.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
