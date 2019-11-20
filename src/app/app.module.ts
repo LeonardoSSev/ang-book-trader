@@ -7,7 +7,7 @@ import 'materialize-css';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { ProfileComponent } from './modules/user/profile/profile.component';
-
+import { AuthService } from './modules/auth/auth.service';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { ProfileComponent } from './modules/user/profile/profile.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
