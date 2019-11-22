@@ -15,8 +15,12 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (user) {
+      this.userAuthenticatedEmitter.emit(true);
+
       return true;
     }
+
+    this.userAuthenticatedEmitter.emit(false);
 
     return false;
   }
@@ -33,5 +37,12 @@ export class AuthService {
     }
 
     this.userAuthenticatedEmitter.emit(false);
+  }
+
+  doLogout() {
+    localStorage.removeItem('user');
+
+    this.userAuthenticatedEmitter.emit(false);
+    this.router.navigate(['login']);
   }
 }
