@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from './modules/auth/auth.service';
 
 @Component({
@@ -7,15 +7,25 @@ import { AuthService } from './modules/auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-  isUserAuthenticated$: Observable<boolean> | boolean = false;
+  isUserAuthenticated: boolean = false;
+
+  subscriber: Subscription;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.isUserAuthenticated$ = this.authService.userAuthenticatedEmitter;
+    this.subscriber = this.authService.userAuthenticatedEmitter
+    .subscribe( isUserAuthenticated => this.isUserAuthenticated = isUserAuthenticated);
   }
 
+  doLogout() {
+    this.authService.doLogout();
+  }
+
+  ngOnDestroy() {
+    this.subscriber.unsubscribe();
+  }
 
 }
