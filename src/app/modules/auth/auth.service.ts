@@ -27,19 +27,28 @@ export class AuthService {
 
   doRegister(user: User) {
     if (user.email !== '' && user.email !== '' && user.password !== '') {
-      let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+      let registeredUsers = this.getRegisteredUsers();
+
       registeredUsers.push(user);
 
       localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
 
-      this.userAuthenticatedEmitter.emit(true);
-
-      this.router.navigate(['profile']);
+      this.doLogin(user);
 
       return;
     }
 
     this.userAuthenticatedEmitter.emit(false);
+  }
+
+  private getRegisteredUsers() {
+    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+
+    if (registeredUsers) {
+      return registeredUsers;
+    }
+
+    return [];
   }
 
   doLogin(user: User) {
