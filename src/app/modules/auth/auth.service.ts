@@ -57,7 +57,7 @@ export class AuthService {
 
       this.userAuthenticatedEmitter.emit(true);
 
-      this.router.navigate(['profile']);
+      this.router.navigate(['home']);
 
       return;
     }
