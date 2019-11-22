@@ -11,23 +11,23 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: 'register',
-    component: RegisterComponent,
-    canActivate: [AuthGuard]
+    component: RegisterComponent
   },
   {
     path: 'login',
-    component: LoginComponent,
-    canActivate: [AuthGuard]
+    component: LoginComponent
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: '**',
