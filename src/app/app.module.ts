@@ -6,21 +6,21 @@ import { AppComponent } from './app.component';
 import 'materialize-css';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/auth.service';
-import { ProfileComponent } from './modules/user/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './modules/home/home.component';
+import { UserModule } from './modules/user/user.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    UserModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
