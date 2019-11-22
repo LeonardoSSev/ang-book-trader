@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   doLogin(user: User) {
-    if (user.email !== '' && user.password !== '') {
+    if (user.email !== '' && user.password !== '' && this.checkForExistentUser(user)) {
       localStorage.setItem('user', JSON.stringify(user));
 
       this.userAuthenticatedEmitter.emit(true);
@@ -63,6 +63,12 @@ export class AuthService {
     }
 
     this.userAuthenticatedEmitter.emit(false);
+  }
+
+  private checkForExistentUser(user: User) {
+    const registeredUsers = this.getRegisteredUsers();
+
+    return registeredUsers.find(registeredUser => user.email === registeredUser.email && user.password === registeredUser.password);
   }
 
   doLogout() {
