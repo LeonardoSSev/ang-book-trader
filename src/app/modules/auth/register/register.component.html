@@ -1,1 +1,27 @@
-<p>register works!</p>
+<div class="row">
+  <form class="col s12 offset-s3" id="form" [formGroup]="registerForm">
+    <div class="row">
+        <div class="input-field col s6">
+          <input id="name" type="text" required autofocus formControlName="name">
+          <label for="name" id="labelName">Name</label>
+        </div>
+      </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="text" required formControlName="email">
+        <label for="email" id="labelEmail">E-mail</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required formControlName="password">
+        <label for="password" id="labelPassword">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button class="btn waves-effect waves-light" [disabled]="verifyIfFormIsValid()" (click)="doRegister()" name="doRegister" id="registerButton">Register</button>
+      </div>
+    </div>
+  </form>
+</div>
