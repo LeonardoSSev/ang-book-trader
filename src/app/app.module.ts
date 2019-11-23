@@ -9,6 +9,7 @@ import { AuthService } from './modules/auth/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './modules/home/home.component';
 import { UserModule } from './modules/user/user.module';
+import { BooksModule } from './modules/books/books.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UserModule } from './modules/user/user.module';
     BrowserModule,
     AuthModule,
     UserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BooksModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
